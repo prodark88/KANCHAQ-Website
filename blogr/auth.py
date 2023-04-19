@@ -6,7 +6,7 @@ bp=Blueprint('auth', __name__, url_prefix='/auth')
 #Resgitrar usuarios
 @bp.route('/register')
 def register():
-    return render_template('auth/regiser.html')
+    return render_template('auth/register.html')
 
 #Accceder a la pagina 
 @bp.route('/login')

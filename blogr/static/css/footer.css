@@ -1,0 +1,23 @@
+
+
+  .intro-section2 {
+    margin-top: 160px;
+  }
+  .my-custom-class h2 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: bold;
+  }
+
+  .my-custom-class p {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: normal;
+  }
+  
+
+  .card {
+    margin-top: 30px;
+  }

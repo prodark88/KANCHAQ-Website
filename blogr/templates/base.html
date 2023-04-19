@@ -7,156 +7,21 @@
     <meta charset="UTF-8">
     <title>Pagina de Blogs - {% block title %}  {% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">    
 </head>
+
+
 <body>
-       
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!-- Agrega el logo en la parte izquierda -->
-        <a class="navbar-brand" href="#">
-          <img src="ruta-a-tu-logo.png" width="30" height="30" alt="">
-        </a>
-        <!-- Agrega un botón para dispositivos móviles -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Agrega opciones de menú en la parte derecha -->
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link text-white" href="#">Iniciar Sesión</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-warning" href="#">Registrarse</a>
-            </li>
-            <li class="nav-item dropdown">
-              <!-- Agrega una flecha desplegable en la parte derecha -->
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="ruta-a-tu-foto-de-perfil.png" width="30" height="30" alt="" class="rounded-circle">
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Mi Perfil</a>
-                <a class="dropdown-item" href="#">Cerrar Sesión</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-    </nav>
-
-
-    <section class="intro-section text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Bienvenido a mi blog</h2>
-              <p>En el corazón del departamento de Ayacucho-Huamanga, se encuentra el restaurante K'anchaq, que se dedica a ofrecer un menú diario de comida peruana fresca y deliciosa. 
-                Lo que diferencia a K'anchaq de otros restaurantes es su enfoque en usar poco condimento en la comida. En lugar de saturar los platos con sal y especias, 
-                el sabor de la comida se extrae de los ingredientes naturales y frescos que se utilizan en la cocina.
-                El enfoque en la frescura y la simplicidad en la preparación de los platos es evidente en cada bocado. La comida es tan fresca que puedes saborear los ingredientes individuales 
-                y la falta de condimentos no se siente como una carencia, sino como una elección consciente.
-                Además de la comida increíble, el ambiente en K'anchaq es acogedor y amigable. Los comensales son bienvenidos a sentarse y disfrutar de la comida en un ambiente informal pero elegante.
-                En resumen, si estás buscando una comida peruana auténtica y deliciosa que sea fresca y preparada con cuidado, K'anchaq es el lugar para ti. 
-                Su enfoque en usar poco condimento en la comida hace que los ingredientes naturales y frescos hablen por sí solos y su menú diario significa que siempre hay algo nuevo para probar. 
-                ¡No te lo pierdas! </p>
-            </div>
-          </div>
-        </div>
-      </section>
+  
+  {% block header %}
+  
+  {% endblock %}
 
 
 
+  {% block content %}
 
-
-
-
-
-    <div class="container mt-5">
-        <div class="row ">
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 1</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 2</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 3</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 4</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 3</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 4</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 3</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="card mb-4 box-shadow">
-                  <div class="card-body">
-                    <h4 class="card-title">Título 4</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
+  {% endblock %}
 
 
     <!-- Agrega los enlaces para las librerías JS de Bootstrap -->
@@ -164,11 +29,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-
-    
-        
-
-    
 </body>
 
 <footer class="bg-dark text-white py-3">
