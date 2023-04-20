@@ -1,3 +1,4 @@
+
 from blogr import db
 
 class User(db.Model):
@@ -6,14 +7,12 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
-    confirm_password = db.Column(db.Text, nullable=False)
     photo = db.Column(db.String(200), default=None)
 
-    def __init__(self, username, email, password, confirm_password):
+    def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = password
-        self.confirm_password = confirm_password
 
     def __repr__(self):
         return f"User(id={self.id}, username='{self.username}', email='{self.email}')"
@@ -31,7 +30,9 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
-    author = db.relationship('users', backref=db.backref('posts', lazy=True))
+    #author = db.relationship('users', backref=db.backref('posts', lazy=True))
+    author = db.relationship(User, backref=db.backref('posts', lazy=True))
+
 
     def __init__(self, author, url, title, info, content):
         self.author = author
@@ -39,7 +40,7 @@ class Post(db.Model):
         self.title = title
         self.info = info
         self.content = content
-        def __repr__(self):
-            return f"Post(id={self.id}, author_id={self.author_id}, title='{self.title}', url='{self.url}')"
+    def __repr__(self):
+        return f"Post(id={self.id}, author_id={self.author_id}, title='{self.title}', url='{self.url}')"
 
 

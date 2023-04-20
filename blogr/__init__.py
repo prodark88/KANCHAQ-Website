@@ -1,39 +1,28 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 
 def create_app():
-    #CREAR LA APP
-    app=Flask(__name__)
+    # Crear la aplicación
+    app = Flask(__name__)
 
-
-
+    # Configurar la aplicación
     app.config.from_object('config.Config')
+
+    # Inicializar las extensiones
     db.init_app(app)
-    
+    migrate = Migrate(app, db)
 
-
-
-
-
-
-    # Registro de vistas
-
-    from blogr import home #registro del inicio de pagina
+    # Registrar las vistas
+    from blogr import home
     app.register_blueprint(home.bp)
 
-    from blogr import auth # registro de la pagina de autenticacion
+    from blogr import auth
     app.register_blueprint(auth.bp)
 
-    from blogr import post #registro de la pagina de post
+    from blogr import post
     app.register_blueprint(post.bp)
-
-
-    #migrar nuestro modelos de manera automatica a nuesta BB.DD
-    from .models import User, Post
-    with app.app_context():
-        db.create_all()
 
     return app

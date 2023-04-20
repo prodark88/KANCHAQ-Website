@@ -35,26 +35,22 @@ Register  {{ super() }}
                                 <h4>Registro</h4>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method="POST">
                                     <div class="mb-3">
-                                        <label for="nombre" class="form-label">Nombre completo</label>
-                                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre completo">
+                                        <label for="username" class="form-label">Nombre completo</label>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Ingresa tu nombre completo">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="correo" class="form-label">Correo electrónico</label>
-                                        <input type="email" class="form-control" id="correo" placeholder="Ingresa tu correo electrónico">
+                                        <label for="email" class="form-label">Correo electrónico</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo electrónico">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="contraseña" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" id="contraseña" placeholder="Ingresa tu contraseña">
+                                        <label for="password" class="form-label">Contraseña</label>
+                                        <input type="password" class="form-control" id="password" name= "password" placeholder="Ingresa tu contraseña">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="confirmar-contraseña" class="form-label">Confirmar contraseña</label>
-                                        <input type="password" class="form-control" id="confirmar-contraseña" placeholder="Confirma tu contraseña">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="edad" class="form-label">Edad</label>
-                                        <input type="number" class="form-control" id="edad" placeholder="Ingresa tu edad">
+                                        <label for="confirm_password" class="form-label">Confirmar contraseña</label>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirma tu contraseña">
                                     </div>
                                     <div class="form-check mb-3">
                                         <input type="checkbox" class="form-check-input" id="aceptar-terminos">
