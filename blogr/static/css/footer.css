@@ -3,8 +3,12 @@
   .intro-section2 {
     margin-top: 160px;
   }
+
+
+  
   .my-custom-class h2 {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Georgia, serif;
+    font-style: italic;
     font-size: 18px;
     line-height: 1.5;
     font-weight: bold;
@@ -16,8 +20,19 @@
     line-height: 1.5;
     font-weight: normal;
   }
-  
 
   .card {
     margin-top: 30px;
+  }
+ 
+
+  .alert {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 40px
+  }
+
+  .rounded-border {
+    border-radius: 50%;
+    border: 10px solid rgba(255, 255, 255, 0.2);
   }

@@ -4,13 +4,9 @@ from flask import Blueprint, render_template, redirect, url_for, request, g , se
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-
+#para trabajr el login
 from flask_login import current_user, login_user 
-from werkzeug.security import check_password_hash
-
 from .forms import LoginForm
-
-
 
 
 
@@ -59,28 +55,62 @@ def register():
 #Accceder a la pagina 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    # Si el usuario ya está autenticado, redirigirlo a la página de inicio
-    if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
+    if request.method == 'POST':
+        # Obtener los valores del formulario
+        
+        email = request.form['email']
+        password = request.form['password']
+        
 
-    # Crear un objeto del formulario de inicio de sesión
-    form = LoginForm()
 
-    if form.validate_on_submit():
-        # Buscar el usuario por nombre de usuario o correo electrónico
-        user = User.query.filter_by(username=form.username_or_email.data).first() \
-            or User.query.filter_by(email=form.username_or_email.data).first()
+        error = None
+        user = User.query.filter( User.email == email).first()
+        
+        if user ==  None or not check_password_hash(user.password, password):
+            error = 'Corre o contraseña es incorrecta'
 
-        # Verificar si el usuario existe y si la contraseña es correcta
-        if user and check_password_hash(user.password, form.password.data):
-            # Iniciar sesión al usuario
-            login_user(user, remember=form.remember_me.data)
-            flash('Ha iniciado sesión correctamente.')
-            return redirect(request.args.get('next') or url_for('main.index'))
-        else:
-            flash('Usuario o contraseña incorrectos.')
+        if error is None:
+            session.clear()
+            session['user_id']=user.id
+            return redirect(url_for('post.posts'))
+        
+        flash(error)
 
-    return render_template('auth/login.html', form=form)
+    return render_template('auth/login.html')
+
+
+#decorador para mantener sesion
+bp.before_app_request
+def load_logged_in_user():
+    user_id= session.get('user_id')
+    
+    if user_id is None:
+        g.user = None
+    else:
+        g.user= User.query.get_or_404(user_id)
+
+
+
+
+#cerrar sesion
+@bp.route('/logout')
+def logout():
+    if session.clear():
+     return redirect(url_for('home.index'))
+
+
+#decorador para colocar en vistas
+import functools
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        return view(**kwargs)
+    return wrapped_view
+
+
 
 
 #Accerder al perfil

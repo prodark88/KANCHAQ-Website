@@ -44,3 +44,5 @@ class Post(db.Model):
         return f"Post(id={self.id}, author_id={self.author_id}, title='{self.title}', url='{self.url}')"
 
 
+
+

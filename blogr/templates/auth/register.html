@@ -38,19 +38,19 @@ Register  {{ super() }}
                                 <form method="POST">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Nombre completo</label>
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Ingresa tu nombre completo">
+                                        <input type="text" class="form-control" id="username" name="username"  required placeholder="Ingresa tu nombre completo">
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Correo electrónico</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo electrónico">
+                                        <input type="email" class="form-control" id="email" name="email" required  placeholder="Ingresa tu correo electrónico">
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" id="password" name= "password" placeholder="Ingresa tu contraseña">
+                                        <input type="password" class="form-control" id="password" name= "password"  required  minlength="6" placeholder="Ingresa tu contraseña">
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm_password" class="form-label">Confirmar contraseña</label>
-                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirma tu contraseña">
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required minlength="6" placeholder="Confirma tu contraseña">
                                     </div>
                                     <div class="form-check mb-3">
                                         <input type="checkbox" class="form-check-input" id="aceptar-terminos">
