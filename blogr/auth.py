@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, g , session , flash
+from flask import Blueprint, render_template, redirect, url_for, request, g , session , flash, abort
 
 # para la seguridad
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,8 +14,8 @@ bp=Blueprint('auth', __name__, url_prefix='/auth')
 
 
 #base y clase necesaria para trabajar en el auth
-from .models import db , User
-
+from .models import User
+from blogr import db
 #Resgitrar usuarios
 @bp.route('/register', methods =['POST', 'GET'])
 def register():
@@ -67,7 +67,7 @@ def login():
         user = User.query.filter( User.email == email).first()
         
         if user ==  None or not check_password_hash(user.password, password):
-            error = 'Corre o contraseña es incorrecta'
+            error = 'Correo o contraseña es incorrecta'
 
         if error is None:
             session.clear()
@@ -77,27 +77,14 @@ def login():
         flash(error)
 
     return render_template('auth/login.html')
-
-
-#decorador para mantener sesion
-bp.before_app_request
-def load_logged_in_user():
-    user_id= session.get('user_id')
-    
-    if user_id is None:
-        g.user = None
-    else:
-        g.user= User.query.get_or_404(user_id)
-
-
-
-
-#cerrar sesion
-@bp.route('/logout')
-def logout():
-    if session.clear():
-     return redirect(url_for('home.index'))
-
+'''
+#mantener inicio de sesion
+@bp.before_app_request
+def before_request():
+    g.user = None
+    if 'user_id' in session:
+        g.user = User.query.get(session['user_id'])
+'''
 
 #decorador para colocar en vistas
 import functools
@@ -106,14 +93,33 @@ def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('auth.logout'))
         return view(**kwargs)
     return wrapped_view
 
+#decorador para mantener sesion
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    
+    if user_id is not None:
+        g.user = User.query.get(user_id)
+    else:
+        pass #abort(404)
+        
 
+#cerrar sesion
+@bp.route('/logout')
+def logout():
+    if  g.user:
+        session.clear()
+    flash('Sesión cerrada correctamente.')
+    return redirect(url_for('home.index'))
 
 
 #Accerder al perfil
 @bp.route('/profile')
+@login_required
+
 def profile():
     return render_template('auth/profile.html')
