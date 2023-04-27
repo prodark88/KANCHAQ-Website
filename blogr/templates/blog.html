@@ -5,5 +5,47 @@ Blogs - {{ super() }}
 {% endblock %}
 
 {% block content %}
-<br> <br> <br>
+
+
+
+<article class="container">
+    <header class="row d-flex align-items-center">
+        <div class="col-auto pr-0">
+            <div class="col-auto pl-0">
+                <h2>{{post.title}}</h2><br>
+            </div>
+            <div class="d-flex align-items-center">
+                {% if get_user(post.author_id).photo is none %}
+                <img src="{{ url_for('static', filename='img/itachi.jpg') }}" width="30" height="30" alt="foto-perfil"
+                    class="rounded-circle mr-3">
+                {% else %}
+                <img src="{{ url_for('static', filename= get_user(post.author_id).photo) }}" width="30" height="30"
+                    alt="foto-perfil" class="rounded-circle mr-3">
+                {% endif %}
+                <p class="text-muted m-0">{{get_user(post.author_id).username}} - {{post.created_at.strftime('%d de %B
+                    %Y')}}</p>
+            </div>
+    </header><br>
+    <section class="row">
+        <div class="col">
+            <p>{{post.info}}</p>
+            <hr>
+            <p>{{post.content | safe }}</p>
+        </div>
+    </section>
+</article>
+
+
+
+
+
+
+<style>
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
 {% endblock %}

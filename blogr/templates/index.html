@@ -1,145 +1,101 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Inicio  {{ super() }}
+Inicio {{ super() }}
 {% endblock %}
 
 {% block content %}
-    <!--  codigo de la presentacion-->
-    <section class="intro-section text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 " style="text-align: left;">
-            <h2  >
-              <br>  Bienvenido a mi BLOG DE <br> COMIDAS
-            </h2>
-            <p  >En el corazón del departamento de Ayacucho-Huamanga, se encuentra el restaurante K'anchaq, que se dedica a ofrecer un menú diario de comida peruana fresca y deliciosa. 
-              Lo que diferencia a K'anchaq de otros restaurantes es su enfoque en usar poco condimento en la comida. En lugar de saturar los platos con sal y especias, 
-              el sabor de la comida se extrae de los ingredientes naturales y frescos que se utilizan en la cocina. <br>
-              El enfoque en la frescura y la simplicidad en la preparación de los platos es evidente en cada bocado. La comida es tan fresca que puedes saborear los ingredientes individuales 
-              y la falta de condimentos no se siente como una carencia, sino como una elección consciente. <br>
-              Además de la comida increíble, el ambiente en K'anchaq es acogedor y amigable. Los comensales son bienvenidos a sentarse y disfrutar de la comida en un ambiente informal pero elegante.
-              En resumen, si estás buscando una comida peruana auténtica y deliciosa que sea fresca y preparada con cuidado, K'anchaq es el lugar para ti. <br>
-            
-              ¡No te lo pierdas! </p> 
-              <br>
-              <a href="{{ url_for('auth.register') }}" class="btn btn-outline-dark btn-lg" style="background-color: white; color: black; border-color: black;">Registrarse</a>
-          </div>
-          <div class="col-md-4">
-            <img src="{{ url_for('static', filename='img/quinua.jpg') }}" class="mx-auto rounded-border" alt="Mi imagen" style="max-width: 100%; height: auto; margin-top: 150px; ">
+<!--  codigo de la presentacion-->
+<section class="intro-section text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 " style="text-align: left;">
+        <h2>
+          <br> Bienvenido a mi BLOG DE <br> COMIDAS
+        </h2>
+        <p>En el corazón del departamento de Ayacucho-Huamanga, se encuentra el restaurante K'anchaq, que se dedica a
+          ofrecer un menú diario de comida peruana fresca y deliciosa.
+          Lo que diferencia a K'anchaq de otros restaurantes es su enfoque en usar poco condimento en la comida. En
+          lugar de saturar los platos con sal y especias,
+          el sabor de la comida se extrae de los ingredientes naturales y frescos que se utilizan en la cocina. <br>
+          El enfoque en la frescura y la simplicidad en la preparación de los platos es evidente en cada bocado. La
+          comida es tan fresca que puedes saborear los ingredientes individuales
+          y la falta de condimentos no se siente como una carencia, sino como una elección consciente. <br>
+          Además de la comida increíble, el ambiente en K'anchaq es acogedor y amigable. Los comensales son bienvenidos
+          a sentarse y disfrutar de la comida en un ambiente informal pero elegante.
+          En resumen, si estás buscando una comida peruana auténtica y deliciosa que sea fresca y preparada con cuidado,
+          K'anchaq es el lugar para ti. <br>
+
+          ¡No te lo pierdas! </p>
+        <br>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-outline-dark btn-lg"
+          style="background-color: white; color: black; border-color: black;">Registrarse</a>
+      </div>
+      <div class="col-md-4">
+        <img src="{{ url_for('static', filename='img/quinua.jpg') }}" class="mx-auto rounded-border" alt="Mi imagen"
+          style="max-width: 100%; height: auto; margin-top: 150px; ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--  fin del codigo de presentacion-->
+
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2>¿Buscas algo en Particular?</h2>
+        <p>En nuestro blog de comida podrás encontrar una gran variedad de recetas y consejos culinarios para hacer en
+          casa. Desde platos principales hasta postres, pasando por aperitivos y bebidas. Además, también compartimos
+          noticias e información interesante sobre la industria alimentaria y la gastronomía en general.</p>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Buscar...">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Buscar</button>
           </div>
         </div>
       </div>
-    </section>
-  
-  <!--  fin del codigo de presentacion-->
+    </div>
+  </div>
+</section>
 
 
-  <section>
-    <div class="container">
+<!--  codigo de los contenedores-->
+<div class="container mt-5">
+  <div class="row ">
+    {% for post in posts|reverse %}
+    <div class="col-md-6">
       <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <h2>¿Buscas algo en Particular?</h2>
-          <p>En nuestro blog de comida podrás encontrar una gran variedad de recetas y consejos culinarios para hacer en casa. Desde platos principales hasta postres, pasando por aperitivos y bebidas. Además, también compartimos noticias e información interesante sobre la industria alimentaria y la gastronomía en general.</p>    
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Buscar...">
-            <div class="input-group-append"> 
-              <button class="btn btn-outline-secondary" type="button">Buscar</button>
+        <div class="col-md-12">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body">
+              <h4 class="card-title">{{post.title}}</h4>
+              <p class="card-text">{{post.info}}</p>
+              <a href="{{url_for('home.blog', url=post.url)}}">Leer más</a>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex align-items-center">
+                <div class="mr-3">
+                  {% if get_user(post.author_id).photo is none %}
+                  <img src="{{ url_for('static', filename='img/itachi.jpg') }}" width="30" height="30" alt="foto-perfil"
+                    class="rounded-circle">
+                  {% else %}
+                  <img src="{{ url_for('static', filename= get_user(post.author_id).photo) }}" width="30" height="30" alt="foto-perfil"
+                    class="rounded-circle">
+                  {% endif %}
+                  <span>{{get_user(post.author_id).username}}</span>
+                  <p class="text-muted mb-0">{{post.created_at.strftime('%d de %B %Y')}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>      
-  </section>
-  
-
-  <!--  codigo de los contenedores-->
-      <div class="container mt-5">
-          <div class="row ">
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 1</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 2</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 3</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 4</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 5</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 6</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 7</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                      <h4 class="card-title">Título 8</h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris venenatis magna sed varius cursus. Sed consectetur, elit ac congue pulvinar, nulla augue feugiat quam, eu efficitur nisi risus eget tortor.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-  
-          </div>
-        </div>
-  <!--  fin del codigo de contenerdores-->
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!--  fin del codigo de contenerdores-->
 {% endblock %}
