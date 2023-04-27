@@ -19,6 +19,10 @@ def create_app():
     db.init_app(app)
     migrate = Migrate(app, db)
 
+    # para iniciar ck-editor
+    from flask_ckeditor import CKEditor
+    ckeditor = CKEditor(app)
+
     # Registrar las vistas
     from blogr import home
     app.register_blueprint(home.bp)

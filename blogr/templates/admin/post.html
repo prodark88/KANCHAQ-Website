@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Posts {{ super() }}
+{% endblock %}
+
+{% block alert %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-success">
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+{% endwith %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h2 class="my-4">Tus publicaciones</h2>
+  <div class="row mb-4">
+    <div class="col-12">
+      <h3 class="d-inline-block mr-3">¡Bienvenido al panel de administracion de blogs!</h3>
+      <a href="{{ url_for('post.create')}}" class="btn btn-success float-right mt-2 btn-lg"
+        style="border-color: green; color: green; background-color: white;">Agregar blog</a>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Título de blog</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts | reverse %}
+      {% if g.user.id == post.author_id %}
+      <tr>
+        <td>{{ post.title }}</td>
+        <td class="d-flex justify-content">
+          <a href="{{ url_for('post.update', id=post.id) }}" class="btn btn-primary mx-2">Editar</a>
+          <form action="{{ url_for('post.delete', id=post.id) }}" method="post"
+            onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta publicación?')">
+            <button type="submit" class="btn btn-danger mx-2">Eliminar</button> <br>
+          </form> <br>
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+<style>
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
+{% endblock %}

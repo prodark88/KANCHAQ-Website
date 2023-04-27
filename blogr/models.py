@@ -34,8 +34,8 @@ class Post(db.Model):
     author = db.relationship(User, backref=db.backref('posts', lazy=True))
 
 
-    def __init__(self, author, url, title, info, content):
-        self.author = author
+    def __init__(self, author_id, url, title, info, content):
+        self.author_id = author_id
         self.url = url
         self.title = title
         self.info = info

@@ -2,6 +2,12 @@ from flask import Blueprint, render_template, redirect, url_for, request, g , se
 
 bp=Blueprint('home', __name__)
 
+
+from .models import User, Post
+from blogr import db
+
+
+
 @bp.route('/')
 def index():
     return render_template('index.html')

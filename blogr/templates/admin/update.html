@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile {{ super() }}
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+  <h2 class="my-4">Editar blog</h2>
+  <form method="POST" action="#">
+    <div class="form-group">
+      <label for="title">Título:</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{post.title}}"
+        placeholder="Tìtulo del blog" required>
+    </div>
+    <div class="form-group">
+      <label for="info">Descripción:</label>
+      <input type="text" class="form-control" id="info" name="info" value="{{post.info}}"
+        placeholder="Breve descripcion del blog" required>
+    </div>
+    <div class="form-group">
+      <label for="content" class="form-group">Contenido:</label>
+      {{ ckeditor.create(value=post.content) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+  <br>
+</div>
+
+
+
+<style>
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
+
+
+{% endblock %}

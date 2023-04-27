@@ -10,3 +10,5 @@ class Config:
         
         SQLALCHEMY_DATABASE_URI = SQLITE
         SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+        CKEDITOR_PKG_TYPE = 'full'
