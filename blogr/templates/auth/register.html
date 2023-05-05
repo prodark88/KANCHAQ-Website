@@ -1,33 +1,38 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Register  {{ super() }}
+Register {{ super() }}
 {% endblock %}
 
 {% block content %}
 
 <div class="container ">
     <div class="row mx-auto">
-      <div class="col-md-8 mx-auto">
-        <section class="intro-section2 text-center">
-            <div class="container ">
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h2 >Registrate en BLOG POST</h2>
-                            <p >Este blog está dedicado a las comidas peruanas, en particular a aquellas que forman parte del menú diario en el restaurante K'anchaq, ubicado en el corazón del departamento de Ayacucho-Huamanga. La cocina peruana es conocida en todo el mundo por su variedad y riqueza de sabores, y K'anchaq se destaca por su enfoque en utilizar ingredientes frescos y naturales en lugar de saturar los platos con sal y especias. En este restaurante podrás disfrutar de auténticos platillos peruanos preparados con cuidado y sabor excepcional. ¡No te pierdas la oportunidad de probar la comida peruana en K'anchaq!</p>
-
+        <div class="col-md-8 mx-auto">
+            <section class="intro-section text-center">
+                <div class="container ">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h2>Registrate en BLOG POST</h2>
+                                <p>Este blog está dedicado a las comidas peruanas, en particular a aquellas que forman
+                                    parte del menú diario en el restaurante K'anchaq, ubicado en el corazón del
+                                    departamento de Ayacucho-Huamanga. La cocina peruana es conocida en todo el mundo
+                                    por su variedad y riqueza de sabores, y K'anchaq se destaca por su enfoque en
+                                    utilizar ingredientes frescos y naturales en lugar de saturar los platos con sal y
+                                    especias. En este restaurante podrás disfrutar de auténticos platillos peruanos
+                                    preparados con cuidado y sabor excepcional. ¡No te pierdas la oportunidad de probar
+                                    la comida peruana en K'anchaq!</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         </div>
-      <div class="col-md-4">
-        <!-- contenido del lado derecho -->
-        <body>
-            <br>
-            <div class="container">
+        <div class="col-md-4">
+            <!-- contenido del lado derecho -->
+
+            <div class=" intro-section  ">
                 <div class="row justify-content-center mt-6">
                     <div class="col-md-12">
                         <div class="card">
@@ -38,23 +43,29 @@ Register  {{ super() }}
                                 <form method="POST">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Nombre completo</label>
-                                        <input type="text" class="form-control" id="username" name="username"  required placeholder="Ingresa tu nombre completo">
+                                        <input type="text" class="form-control" id="username" name="username" required
+                                            placeholder="Ingresa tu nombre completo">
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Correo electrónico</label>
-                                        <input type="email" class="form-control" id="email" name="email" required  placeholder="Ingresa tu correo electrónico">
+                                        <input type="email" class="form-control" id="email" name="email" required
+                                            placeholder="Ingresa tu correo electrónico">
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" id="password" name= "password"  required  minlength="6" placeholder="Ingresa tu contraseña">
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            required minlength="6" placeholder="Ingresa tu contraseña">
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm_password" class="form-label">Confirmar contraseña</label>
-                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required minlength="6" placeholder="Confirma tu contraseña">
+                                        <input type="password" class="form-control" id="confirm_password"
+                                            name="confirm_password" required minlength="6"
+                                            placeholder="Confirma tu contraseña">
                                     </div>
                                     <div class="form-check mb-3">
                                         <input type="checkbox" class="form-check-input" id="aceptar-terminos">
-                                        <label class="form-check-label" for="aceptar-terminos">Acepto los términos y condiciones</label>
+                                        <label class="form-check-label" for="aceptar-terminos">Acepto los términos y
+                                            condiciones</label>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Registrarse</button>
@@ -69,18 +80,8 @@ Register  {{ super() }}
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
-        </body>  
-      </div>
+        </div>
     </div>
 </div>
-  
-<style>
-    footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-          }
-</style>
-        
+
 {% endblock %}

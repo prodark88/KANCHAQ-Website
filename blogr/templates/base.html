@@ -1,32 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>Pagina de Blogs - {% block title %}  {% endblock %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Pagina de Blogs - {% block title %} {% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-eT7VfhTfTg/Y7Vb8W+x6ZzKwCPqrCpJSLvjq8WNNKbI9Omk/Oa6HzYISF8WQZ5O5wK2EMrq5B5g5L1yihXuhqg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 
 <body>
-  
+
   <header>
-    <!-- Estructura de la barra de navegacion -->
-  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <!-- Agrega el logo en la parte izquierda -->
-      <a class="navbar-brand" href="{{ url_for('home.index') }}">
-        <img src="{{ url_for('static', filename='img/KANCHAQ.png') }}" width="50" height="50" alt="LOGO-KANCHAQ" style="margin-left: 70px;">
-      </a>
-      <!-- Agrega un botón para dispositivos móviles -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="logo-container">
+        <a class="navbar-brand" href="{{ url_for('home.index') }}">
+          <img src="{{ url_for('static', filename='img/KANCHAQ.png') }}" alt="LOGO-KANCHAQ" class="rounded-circle">
+          <span class="logo-text">RESTAURANTE K'ANCHAQ</span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="#">Inicio</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="#">Testimonios</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="#">Blog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- Agrega opciones de menú en la parte derecha -->
-      <div class="collapse navbar-collapse justify-content-end"  id="navbarSupportedContent"  style="margin-right: 70px;" >
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         {% if not g.user %}
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -35,90 +52,96 @@
           <li class="nav-item">
             <a class="btn btn-warning btn-lg" href="{{ url_for('auth.register') }}">Registrarse</a>
           </li>
+        </ul>
         {% else %}
+        <ul class="navbar-nav">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
               {% if g.user.photo is none %}
-                <img src="{{ url_for('static', filename='img/itachi.jpg') }}" width="30" height="30" alt="foto-perfil" class="rounded-circle">
+              <img src="{{ url_for('static', filename='img/itachi.jpg') }}" alt="foto-perfil" class="rounded-circle">
               {% else %}
-                <img src="{{ url_for('static', filename= g.user.photo) }}" width="30" height="30" alt="foto-perfil" class="rounded-circle">
+              <img src="{{ url_for('static', filename= g.user.photo) }}" alt="foto-perfil" class="rounded-circle">
               {% endif %}
             </a>
             <div class="dropdown-menu dropdown-menu-right w-100" aria-labelledby="navbarDropdown">
-              <div class="dropdown-header">  ¡Hola {{ g.user.username }}! </div>
+              <div class="dropdown-header">¡Hola {{ g.user.username }}!</div>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ url_for('post.create') }}">Crear blog</a>
               <a class="dropdown-item" href="{{ url_for('post.posts') }}">Mis blogs</a>
               <a class="dropdown-item" href="{{ url_for('auth.profile', id=g.user.id) }}">Mi Perfil</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Cerrar Sesión</a>                
-          </div>
+              <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Cerrar Sesión</a>
+            </div>
           </li>
         </ul>
         {% endif %}
       </div>
     </nav>
-    
-    <!-- fin de la estructura de la barra de navegacion  -->
   </header>
-  
 
-  {% block alert %} 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <div class="alert alert-danger">
-        <ul>
-          <div >
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          </div>
-          {% endfor %}
-        </ul>
+
+  {% block alert %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="alert alert-danger">
+    <ul>
+      <div>
+        {% for message in messages %}
+        <li>{{ message }}</li>
       </div>
-    {% endif %}
-    {% endwith %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  {% endwith %}
   {%endblock %}
 
   {% block content %}
-  
+
   {% endblock %}
 
 
-    <!-- Agrega los enlaces para las librerías JS de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    {{ ckeditor.load() }}
+  <!-- Agrega los enlaces para las librerías JS de Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  {{ ckeditor.load() }}
 </body>
 
 <footer class="bg-dark text-white py-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h5>Enlaces útiles</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Acerca de nosotros</a></li>
-            <li><a href="#">Contacto</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h5>Redes sociales</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Instagram</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h5>Contacto</h5>
-          <ul class="list-unstyled">
-            <li><i class="fa fa-map-marker"></i> Dirección: Av. Ejemplo 123, Ciudad Ejemplo</li>
-            <li><i class="fa fa-envelope"></i> Email: info@ejemplo.com</li>
-            <li><i class="fa fa-phone"></i> Teléfono: (555) 555-5555</li>
-          </ul>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Enlaces útiles</h5>
+        <ul class="list-unstyled">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Acerca de nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Redes sociales</h5>
+        <ul class="list-unstyled">
+          <li><a href="#">Facebook <i class="fa-brands fa-facebook"></i></a></li>
+          <li><a href="#">Twitter <i class="fab fa-twitter"></i></a></li>
+          <li><a href="#">Instagram <i class="fab fa-instagram"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Contacto</h5>
+        <ul class="list-unstyled">
+          <li><i class="fa fa-map-marker"></i> Dirección: Av. Ejemplo 123, Ciudad Ejemplo</li>
+          <li><i class="fa fa-envelope"></i> Email: info@ejemplo.com</li>
+          <li><i class="fa fa-phone"></i> Teléfono: (555) 555-5555</li>
+        </ul>
       </div>
     </div>
+  </div>
 </footer>
+
 </html>

@@ -1,40 +1,110 @@
+.intro-section2 {
+  margin-top: 160px;
+}
 
-  .intro-section2 {
-    margin-top: 160px;
-  }
+/* CSS de Elementos universales*/
+* {
+  font-family: Georgia, serif;
+}
 
-  * {
-    font-family: Georgia, serif;
-  }
-  
-  h2 {
-    font-family: Georgia, serif;
-    font-style: italic;
-  }
-  
-  p {
-    font-family: Calibri, sans-serif;
-  }
- 
+h2 {
+  font-family: Georgia, serif;
+  font-style: italic;
+  text-align: center;
+}
 
-  .card {
-    margin-top: 30px;
-  }
-  .container{
-    margin-top: 20px;
-  }
-  .container-2{
-    margin-top: 80px;
-  }
+p {
+  font-family: Calibri, sans-serif;
+  text-align: justify;
+}
 
-  .alert {
-    max-width: 600px;
-    margin: 0 auto;
-    margin-top: 40px
-  }
+/* CSS index-presentacion */
+.card {
+  margin-top: 30px;
+}
 
-  .rounded-border {
-    border-radius: 50%;
-    border: 10px solid rgba(255, 255, 255, 0.2);
-  }
+.container {
+  margin-top: 70px;
 
+}
+
+.alert {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 40px
+}
+
+.rounded-border {
+  border-radius: 50%;
+  border: 10px solid rgba(255, 255, 255, 0.2);
+}
+
+.custom-container {
+  max-width: 85%;
+  margin: 20px auto;
+}
+
+.intro-section .col-md-7 {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-right: 20px;
+}
+
+.intro-section .btn {
+  background-color: white;
+  color: black;
+  border-color: black;
+}
+
+.intro-section .col-md-4 {
+  background-color: #333333;
+  color: white;
+  padding: 15px;
+}
+
+.intro-section img {
+  max-width: 60%;
+  height: auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+/* imagen logo-foto perfil de BASE  */
+.rounded-circle {
+  width: 50px;
+  height: 50px;
+  margin-left: 30px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* para q no se cree un scrol horizontal y el footer siempre este en la parte inferior  */
+
+body {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 250px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  /* altura del footer */
+}

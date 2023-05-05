@@ -7,13 +7,12 @@ Profile {{ super() }}
 
 {% block content %}
 
-<div class="container-2">
+<div class="container">
   <form method="post" enctype="multipart/form-data">
-    <div class="row">
+    <div class="row justify-content-between align-items-center my-5">
       <!-- Columna de la izquierda para la foto de perfil -->
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="text-center">
-
           {% if g.user.photo is none %}
           <img src="{{ url_for('static', filename='img/itachi.jpg') }}" alt="Foto de perfil"
             class="img-fluid rounded-circle mb-3" style="width: 200px; height: 200px;">
@@ -21,8 +20,8 @@ Profile {{ super() }}
           <img src="{{ url_for('static', filename=user.photo) }}" alt="Foto de perfil"
             class="img-fluid rounded-circle mb-3" style="width: 200px; height: 200px;">
           {% endif %}
-          </div>
-        <div class='col-md-6 text-center mx-auto'>
+        </div>
+        <div class='col-md-10 text-center mx-auto'>
           <div class="text-center mx-auto">
             <div class="upload-btn-wrapper">
               <input type="file" id="photo" name="photo" accept="image/*">
@@ -30,22 +29,21 @@ Profile {{ super() }}
           </div>
         </div>
       </div>
-
       <!-- Columna de la derecha para el formulario de edición de perfil -->
-      <div class="col-md-4 ">
+      <div class="col-md-5">
         <h2 class="mb-3">Editar Perfil</h2>
-
         <div class="form-group">
           <label for="username">Nombre</label>
-          <input type="text" class="form-control" id="username" name="username" value="{{user.username}}"   required >
+          <input type="text" class="form-control" id="username" name="username" value="{{user.username}}" required>
         </div>
         <div class="form-group">
           <label for="email">Correo Electrónico</label>
-          <input type="email" class="form-control" id="email" name="email" value="{{user.email}}"  readonly>
+          <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" readonly>
         </div>
         <div class="form-group">
           <label for="password">Cambiar Contraseña</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese nueva contraseña">
+          <input type="password" class="form-control" id="password" name="password"
+            placeholder="Ingrese nueva contraseña">
         </div>
         <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
@@ -53,17 +51,5 @@ Profile {{ super() }}
     </div>
   </form>
 </div>
-
-
-
-<style>
-  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
-</style>
-
 
 {% endblock %}
