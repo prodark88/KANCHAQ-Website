@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-eT7VfhTfTg/Y7Vb8W+x6ZzKwCPqrCpJSLvjq8WNNKbI9Omk/Oa6HzYISF8WQZ5O5wK2EMrq5B5g5L1yihXuhqg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
 
 </head>
 
@@ -114,7 +115,7 @@
 </body>
 
 <footer class="bg-dark text-white py-3">
-  <div class="container">
+  <div class="container ">
     <div class="row">
       <div class="col-md-4">
         <h5>Enlaces útiles</h5>
@@ -126,22 +127,35 @@
       </div>
       <div class="col-md-4">
         <h5>Redes sociales</h5>
-        <ul class="list-unstyled">
-          <li><a href="#">Facebook <i class="fa-brands fa-facebook"></i></a></li>
-          <li><a href="#">Twitter <i class="fab fa-twitter"></i></a></li>
-          <li><a href="#">Instagram <i class="fab fa-instagram"></i></a></li>
+        <ul class="list-inline">
+          <li class="list-inline-item m-2 social-icon"><a href="https://www.facebook.com/Kanchaq" target="_blank"
+              rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a></li>
+          <li class="list-inline-item m-2 social-icon"><a href="https://github.com/prodark88" target="_blank"
+              rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a></li>
+          <li class="list-inline-item m-2 social-icon"><a href="https://www.instagram.com/noone_kennth/" target="_blank"
+              rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
         </ul>
       </div>
       <div class="col-md-4">
         <h5>Contacto</h5>
         <ul class="list-unstyled">
-          <li><i class="fa fa-map-marker"></i> Dirección: Av. Ejemplo 123, Ciudad Ejemplo</li>
-          <li><i class="fa fa-envelope"></i> Email: info@ejemplo.com</li>
-          <li><i class="fa fa-phone"></i> Teléfono: (555) 555-5555</li>
+            <li><i class="fa fa-map-marker"></i> Dirección: Urb. Jose Ortiz Vergara, Ayacucho-Huamanga</li>
+            <li><i class="fa fa-envelope"></i> Email: info@outlook.es</li>
+            <li><i class="fa fa-phone"></i> Teléfono: 921 023 409</li>
         </ul>
-      </div>
     </div>
-  </div>
+</div>
+<hr style="background-color: #f2f2f2;">
+<div class="d-flex align-items-center justify-content-between">
+    <div class="col-md-6 text-left">
+        <h5><i class="fa-sharp fa-solid fa-copyright"></i>
+            Todos los derechos reservados</h5>
+    </div>
+    <div class="col-md-6 text-right">
+      <h5>Creado por <strong><a href="https://github.com/prodark88" target="_blank">Kenneth Molina</a></strong></h5>
+  </div> 
+</div>
+</div>
 </footer>
 
 </html>
